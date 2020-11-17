@@ -16,15 +16,10 @@
 <script>
 import MovieList from "./components/MovieList";
 import MovieFilter from "./components/MovieFilter";
-import genreConst from "./util/genres";
 export default {
   data() {
     return {
-      movies: [
-        { title: "The Hobbit", genre: genreConst.FANTASY },
-        { title: "The Avenger", genre: genreConst.DRAMA },
-        { title: "The End Game ", genre: genreConst.DRAMA },
-      ],
+      movies: [],
       genres: [],
       times: [],
     };
@@ -43,6 +38,13 @@ export default {
       }
     },
   },
+  created() {
+    this.$http.get('/api').then(response => {
+      this.movies = response.data
+    }, error => {
+      console.log(error)
+    })
+  }
 };
 </script>
 
