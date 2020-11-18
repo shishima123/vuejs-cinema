@@ -1,7 +1,7 @@
 <template>
   <div class="check-filter" @click="checkFilter()" :class="{ active: checked}">
     <span class="checkbox"></span>
-    <span class="check-filter-title">{{ genre }}</span>
+    <span class="check-filter-title">{{ title }}</span>
   </div>
 </template>
 
@@ -12,16 +12,12 @@ export default {
       checked: false,
     };
   },
-  name: "check-filter",
-  props: ["genre"],
+  name: "MovieFilterCheck",
+  props: ["title", "category"],
   methods: {
     checkFilter() {
       this.checked = !this.checked;
-      this.$emit("check-filter:click", {
-        category: "genre",
-        title: this.genre,
-        checked: this.checked,
-      });
+      this.$emit("check-filter:click", this.category, this.title, this.checked);
     },
   },
 };

@@ -30,11 +30,11 @@ export default {
     MovieFilter,
   },
   methods: {
-    checkFilter(data) {
-      if (data.checked) {
-        this.genres.push(data.title);
+    checkFilter(category, title, checked) {
+      if (checked) {
+        this[category].push(title);
       } else {
-        this.genres = this.genres.filter((item) => item != data.title);
+        this[category] = this[category].filter((item) => item !== title);
       }
     },
   },
